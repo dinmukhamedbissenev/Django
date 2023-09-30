@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <form method="POST" action="create/">
+            {% csrf_token %}
+            <p>
+                <label>Введите имя</label><br>
+                <input type="text" name="name" />
+            </p>
+            <p>
+                <label>Введите цену</label><br>
+                <input type="number" name="cost" />
+            </p>
+            <input type="submit" value="Сохранить" >
+        </form>
+        {% if cars.count > 0 %}
+
+        <form method="GET" action="cost/">
+            <input type="submit" value=" Средняя Цена">
+        </form>
+
+
+        <form method="POST" action="price/">
+            {% csrf_token %}
+            <p>
+                <label>Введите цену</label><br>
+                <input type="number" name="price" />
+            </p>
+
+            <input type="submit" value=" Установить цену">
+        </form>
+
+        <h2>Список пользователей</h2>
+        <table>
+            <thead><th>Id</th><th>Имя</th><th>цену</th><th></th></thead>
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.name }}</td>
+                <td>{{ car.cost }}</td>
+                <td><a href="edit/{{car.id}}">Изменить</a> | <a href="delete/{{car.id}}">Удалить</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </body>
+</html>

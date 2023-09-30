@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    {% csrf_token %}
+    {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.name }}</td>
+                <td>{{ car.cost }}</td>
+            </tr>
+    {% endfor %}
+</body>
+</html>
