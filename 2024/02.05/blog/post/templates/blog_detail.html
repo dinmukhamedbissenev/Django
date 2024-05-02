@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <img src="{{ post.image.url }}" width="200">
+
+    <p>
+        {{ post.description }}
+    </p>
+    <p>
+        {{ post.author }}
+    </p>
+
+    <form action="{% url 'add_comments' post.id %}", method="post">
+        {% csrf_token %}
+        <input type="text" name="name">
+        <textarea type="text" name="text_comment"></textarea>
+        <button type="submit">Submit </button>
+    </form>
+    
+    {% for comment in post.comments_set.all %}
+    <p> {{ comment.name }}</p>
+    <p> {{ comment.text_comment }}</p>
+    {% endfor %}
+
+</body>
+</html>
