@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <form method="get">
+        {{ filter.form.as_p }}
+        <button type="submit">submit</button>
+    </form>
+    {% for obj in filter.qs %}
+    <p> {{ obj.title }}</p>
+    {% endfor %}
+    {% endblock %}
+    
+    {% for post in posts %}
+    <table>
+        <td> <img src="{{ post.image.url }}" width="200"></td>
+        <td>{{ post.author }}</td>
+        <td><a href="{{ post.id }}">{{ post.title }}</a></td>
+        <td>{{ post.description }}</td>
+    </table>
+    {% endfor %}
+
+ 
+</body>
+</html>

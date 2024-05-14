@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+     <ul>
+        <img src="{{ post.image.url }}" width="400">
+        <li>{{ post.title }}</li>
+        <p>{{ post.description }}</p>
+     </ul>
+    
+
+     <form method="post" action="{% url 'add_comments' post.id %}">
+        {% csrf_token %}
+        <input name="author" placeholder="Автор:">
+        <textarea name="text">Ваш комментарий</textarea>
+        <button type="submit">submit</button>
+     </form>
+
+     {% for comment in post.comments_set.all %}
+     <p> {{ comment.author }}</p>
+     <p> {{ comment.text }}</p>
+     {% endfor %}
+
+</body>
+</html>
